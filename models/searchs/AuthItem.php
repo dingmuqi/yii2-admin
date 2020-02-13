@@ -63,7 +63,7 @@ class AuthItem extends Model
             $items = $authManager->getRoles();
         } else {
             $items = array_filter($authManager->getPermissions(), function($item) {
-                return $this->type == Item::TYPE_PERMISSION xor strncmp($item->name, '/', 1) === 0;
+                return $this->type == Item::TYPE_PERMISSION xor (strncmp($item->name, '/', 1) === 0 || strncmp($item->name, Route::PREFIX_ADVANCED, 1) === 0);
             });
         }
         $this->load($params);
