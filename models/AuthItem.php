@@ -253,12 +253,12 @@ class AuthItem extends Model
             }
         }
         foreach (array_keys($manager->getPermissions()) as $name) {
-            $available[$name] = $name[0] == '/' ? 'route' : 'permission';
+            $available[$name] = ( ($name[0] == '/' || $name[0] == Route::PREFIX_ADVANCED)  ? 'route' : 'permission');
         }
 
         $assigned = [];
         foreach ($manager->getChildren($this->_item->name) as $item) {
-            $assigned[$item->name] = $item->type == 1 ? 'role' : ($item->name[0] == '/' ? 'route' : 'permission');
+            $assigned[$item->name] = $item->type == 1 ? 'role' : (($item->name[0] == '/' || $item->name[0] == Route::PREFIX_ADVANCED) ? 'route' : 'permission');
             unset($available[$item->name]);
         }
         unset($available[$this->name]);
