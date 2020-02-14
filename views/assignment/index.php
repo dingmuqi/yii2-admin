@@ -22,7 +22,18 @@ if (!empty($extraColumns)) {
 }
 $columns[] = [
     'class' => 'yii\grid\ActionColumn',
-    'template' => '{view}'
+    'template' => '{view}',
+    'buttons' => [
+    'view' => function ($url, $model, $key) use ($idField) {
+        $options = [
+            'title' => Yii::t('yii', 'View'),
+            'aria-label' => Yii::t('yii', 'View'),
+            'data-pjax' => '0',
+        ];
+        $url .= '&id=' . $model->$idField;
+        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
+    },
+]
 ];
 ?>
 <div class="assignment-index">
