@@ -153,6 +153,9 @@ class Helper
             $normalized = '/' . Yii::$app->controller->getRoute();
         } elseif (strncmp($route, '/', 1) === 0) {
             $normalized = $route;
+        }elseif(strncmp($route, Route::PREFIX_ADVANCED, 1) === 0){
+            $normalized = $route;
+            $advanced = false;
         } elseif (strpos($route, '/') === false) {
             $normalized = '/' . Yii::$app->controller->getUniqueId() . '/' . $route;
         } elseif (($mid = Yii::$app->controller->module->getUniqueId()) !== '') {
