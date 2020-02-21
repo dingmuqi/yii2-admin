@@ -2,6 +2,7 @@
 
 namespace mdm\admin\models\searchs;
 
+use mdm\admin\models\Route;
 use Yii;
 use yii\base\Model;
 use yii\data\ArrayDataProvider;
